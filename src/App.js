@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import SideMenu from './components/SideMenu/index.tsx';
+import PlayMenu from './components/PlayMenu/index.tsx';
+import {useState} from 'react'
+import {RouterContext} from './router/index.ts'
 
 function App() {
+  let [page,setPage] = useState('main')
+  function open(v){
+    setPage(v)
+  }
+  let [path,setPath] = useState(window.location.hash?.split('#')[1]??'/')
+  function goto(v){
+    window.location.hash=v
+    setPath(v)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <RouterContext.Provider value={{path,goto}}>
+    <div className="App flex h-screen bg-neutral-600">
+      <SideMenu onOpen={open}/>
+      {page=='main' && <PlayMenu/>}
     </div>
+    </RouterContext.Provider>
   );
 }
 
