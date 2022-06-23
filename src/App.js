@@ -2,25 +2,28 @@ import './App.css';
 import SideMenu from './components/SideMenu/index.tsx';
 import PlayMenu from './components/PlayMenu/index.tsx';
 import {useState} from 'react'
-import {RouterContext} from './router/index.ts'
+import {useRouter} from './router/index.tsx'
+import Files from './components/Files/index.tsx'
+import Settings from './components/Settings/index.tsx'
+
 
 function App() {
-  let [page,setPage] = useState('main')
-  function open(v){
-    setPage(v)
-  }
-  let [path,setPath] = useState(window.location.hash?.split('#')[1]??'/')
-  function goto(v){
-    window.location.hash=v
-    setPath(v)
-  }
+  // let [page,setPage] = useState('main')
+  // let [path,setPath] = useState(window.location.hash?.split('#')[1]??'/')
+  // function goto(v){
+  //   window.location.hash=v
+  //   setPath(v)
+  // }
+  let [path, goto, Router]=useRouter();
   return (
-    <RouterContext.Provider value={{path,goto}}>
+    <Router value={{path,goto}}>
     <div className="App flex h-screen bg-neutral-600">
-      <SideMenu onOpen={open}/>
-      {page=='main' && <PlayMenu/>}
+      <SideMenu onOpen={goto}/>
+      {path=='/' && <PlayMenu/>}
+      {path=='/files' && <Files/>}
+      {path=='/settings' && <Settings/>}
     </div>
-    </RouterContext.Provider>
+    </Router>
   );
 }
 
