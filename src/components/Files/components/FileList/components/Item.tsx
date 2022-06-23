@@ -9,7 +9,7 @@ export interface FileItemProps{
 
 
 export default function (props:FileItemProps){
-    return <div className="flex mb-4">
+    return <div className="flex mb-4 text-left">
         {
             props.type=='FOLDER'?<FileIcon/>:
             props.type=='FILE'?<AudioIcon/>:
