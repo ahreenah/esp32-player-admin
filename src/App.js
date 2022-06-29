@@ -8,6 +8,7 @@ import Settings from './components/Settings/index.tsx'
 
 
 function App() {
+  window.serverName='http://192.168.0.106'
   // let [page,setPage] = useState('main')
   // let [path,setPath] = useState(window.location.hash?.split('#')[1]??'/')
   // function goto(v){
