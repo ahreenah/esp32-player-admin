@@ -38,7 +38,7 @@ export default function FileList(){
                 <div className="mt-9">
                     <input type="file" id="uploadFile" className='hidden'/>
                     <label for="uploadFile" className='bg-blue-400 cursor-pointer text-white p-4 rounded-xl'>
-                        Upload
+                        Uploads
                     </label>
                 </div>
             </div>
